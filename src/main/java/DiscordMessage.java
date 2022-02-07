@@ -1,4 +1,5 @@
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageHistory;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -19,9 +20,13 @@ public class DiscordMessage extends ListenerAdapter {
         TextChannel textChannel = messageReceivedEvent.getTextChannel();
         Message message = messageReceivedEvent.getMessage();
         if(user.isBot()) return;
+        String test = StringReplace(message.getContentRaw());
+        //System.out.println(test);
         try {
-            if(DetectBadWorld(message.getContentRaw())) {
+            if(DetectBadWorld(test)) {
+                message.delete().queue();
                 textChannel.sendMessage(user.getName()+" 욕설 감지").queue();
+
                 //textChannel.sendMessage(String.valueOf(Percent(message.getContentRaw()))).queue();
                 //textChannel.sendMessage(user.getName()).queue();
                 //textChannel.sendMessage(user.getDiscriminator()).queue();
@@ -59,5 +64,12 @@ public class DiscordMessage extends ListenerAdapter {
         String num = onlyText.substring(1,onlyText.length()-1);
         //System.out.println(num);
         return Double.parseDouble(num);
+    }
+    public static String StringReplace(String str){
+        String match = "[^\uAC00-\uD7A30-9a-zA-Z]";
+        str = str.replace("^","ㅅ");
+        str = str.replaceAll(match, "");
+        //System.out.println(str);
+        return str;
     }
 }

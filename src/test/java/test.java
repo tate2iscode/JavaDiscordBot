@@ -2,8 +2,14 @@ import java.io.IOException;
 
 public class test {
     public static void main(String[] args) throws IOException {
-        DiscordMessage discordMessage = new DiscordMessage();
-        boolean a = discordMessage.DetectBadWorld("하이 씨발");
-        System.out.println(a);
+        String test = "^^ㅣ발";
+        test = test.replace("^","ㅅ");
+        String[] list = test.split(" ");
+        System.out.println(list.length);
+        for(String p : list) {
+            //System.out.println("");
+            System.out.println(p);
+            Starting a = new Starting();
+        }
     }
 }

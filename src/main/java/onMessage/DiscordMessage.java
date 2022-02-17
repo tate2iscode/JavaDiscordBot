@@ -76,6 +76,18 @@ public class DiscordMessage extends ListenerAdapter {
         }
     }
 
+    public static String detectCommandofCommandCoin(String text, Integer num) {
+        if(detect(text)) {
+            StringBuffer sb = new StringBuffer();
+            sb.append(text);
+            String context = String.valueOf(sb.deleteCharAt(0));
+            String[] ArrayString = context.split(" ");
+            return ArrayString[num];
+        } else {
+            return "";
+        }
+    }
+
 
     public static boolean detect(String text) {
         String command = String.valueOf(text.charAt(0));
@@ -84,7 +96,7 @@ public class DiscordMessage extends ListenerAdapter {
 
     public int ActCommand(String text, User user, TextChannel textChannel) throws IOException, ParseException {
         if(Objects.equals(detectCommand(text), "코인")) {
-            MAIN(text,user, textChannel);
+            MAIN(text ,user ,textChannel);
             return 0;
         }
         return 1;

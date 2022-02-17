@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class CallCoinPrice {
     static NumberFormat f = NumberFormat.getInstance();
-    {
+    static {
         f.setGroupingUsed(false);
     }
 
